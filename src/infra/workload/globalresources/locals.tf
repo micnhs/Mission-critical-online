@@ -16,7 +16,7 @@ locals {
 
   kql_queries = "${path.root}/../../monitoring/queries/global" # directory that contains the kql queries
 
-  prefix = lower(var.prefix)
+  prefix = "nhs2203"
 
   # var.custom_fqdn is expected to be something like "www.int.myapp.net"
   # custom_domain_subdomain will then be "www"
