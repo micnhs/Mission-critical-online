@@ -1,0 +1,41 @@
+name: Deploy to Azure via AZD
+
+on:
+  push:
+    branches:
+      - main
+  workflow_dispatch:
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20.x'
+
+      - name: Set up Azure CLI
+        uses: azure/cli@v2
+
+      - name: Set up AZD
+        uses: Azure/azd@v1
+
+      - name: Log in to Azure
+        uses: azure/login@v2
+        with:
+          client-id: ${{ secrets.AZURE_CLIENT_ID }}
+          tenant-id: ${{ secrets.AZURE_TENANT_ID }}
+          subscription-id: ${{ secrets.AZURE_SUBSCRIPTION_ID }}
+
+      - name: Deploy infrastructure and app with AZD
+        run: azd up --no-prompt --environment ci
+        env:
+          AZURE_ENV_NAME: ci
+          AZURE_LOCATION: westeurope
+
+      - name: Post-deployment - Show endpoints
+        run: azd env get-values

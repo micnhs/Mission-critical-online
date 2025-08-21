@@ -1,0 +1,11 @@
+# azure.yaml for MissionCriticalOnline
+name: MissionCriticalOnline
+metadata:
+  template: azd-init@1.6.0
+services:
+  web:
+    project: src
+    language: js
+    host: appservice
+
+# Add additional services and configuration as needed
