@@ -5,7 +5,7 @@ trigger: none
 pr: none
 
 pool:
-  vmImage: 'ubuntu-20.04' # (default) microsoft-hosted agentpool
+  vmImage: 'ubuntu-latest' # (default) microsoft-hosted agentpool
 
 parameters:
 
