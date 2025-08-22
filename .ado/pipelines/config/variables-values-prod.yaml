@@ -21,8 +21,8 @@ variables:
 
 # Terraform state variables
 - name:  'terraformResourceGroup'
-  value: 'terraformstate-rg'         # <===== CHANGE THIS VALUE IF NEEDED
-- name:  'terraformStorageAccount'
+  value: 'nhs-terraformstate-rg'         # <===== CHANGE THIS VALUE IF NEEDED
+- name:  'nhsterraformStorageAccount'
   value: '$(prefix)terraformstate'  # Needs to be a globally unique name
 
 # Custom DNS name settings
