@@ -21,7 +21,7 @@ variables:
 # Terraform state variables
 - name:  'terraformResourceGroup'
   value: 'nhs-terraformstate-rg'      # <===== CHANGE THIS VALUE IF NEEDED
-- name:  'nhsterraformStorageAccount'
+- name:  'terraformStorageAccount'
   value: '$(prefix)tfstatestore'  # Needs to be a globally unique name
 
 # Other settings
