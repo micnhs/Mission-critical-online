@@ -27,7 +27,7 @@ data "azurerm_monitor_diagnostic_categories" "acr" {
 }
 
 resource "azurerm_monitor_diagnostic_setting" "acr" {
-  name                       = "acrladiagnostics"
+  name                       = "nhsacrladiagnostics"
   target_resource_id         = azurerm_container_registry.main.id
   log_analytics_workspace_id = azurerm_log_analytics_workspace.global.id
 
