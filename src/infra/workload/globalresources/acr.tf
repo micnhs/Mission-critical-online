@@ -26,27 +26,27 @@ data "azurerm_monitor_diagnostic_categories" "acr" {
   resource_id = azurerm_container_registry.main.id
 }
 
-resource "azurerm_monitor_diagnostic_setting" "acr" {
-  name                       = "nhsacrladiagnostics"
-  target_resource_id         = azurerm_container_registry.main.id
-  log_analytics_workspace_id = azurerm_log_analytics_workspace.global.id
+#resource "azurerm_monitor_diagnostic_setting" "acr" {
+#  name                       = "nhsacrladiagnostics"
+#  target_resource_id         = azurerm_container_registry.main.id
+#  log_analytics_workspace_id = azurerm_log_analytics_workspace.global.id##
 
-  dynamic "enabled_log" {
-    iterator = entry
-    for_each = data.azurerm_monitor_diagnostic_categories.acr.log_category_types
+#  dynamic "enabled_log" {
+#    iterator = entry
+#    for_each = data.azurerm_monitor_diagnostic_categories.acr.log_category_types
 
-    content {
-      category = entry.value
-    }
-  }
+#    content {
+#      category = entry.value
+#    }
+#  }
 
-  dynamic "metric" {
-    iterator = entry
-    for_each = data.azurerm_monitor_diagnostic_categories.acr.metrics
-
-    content {
-      category = entry.value
-      enabled  = true
-    }
-  }
-}
+#  dynamic "metric" {
+#    iterator = entry
+#    for_each = data.azurerm_monitor_diagnostic_categories.acr.metrics
+#
+#    content {
+#      category = entry.value
+#      enabled  = true
+#    }
+#  }
+#}
