@@ -15,15 +15,15 @@ resource "azurerm_log_analytics_workspace" "stamp" {
 # ############
 
 # Imports all *.kql files from src/infra/monitoring/queries/ (local.kql_queries)
-resource "azurerm_log_analytics_saved_search" "queries" {
-  for_each = fileset("${local.kql_queries}/", "*.kql")
+#resource "azurerm_log_analytics_saved_search" "queries" {
+#  for_each = fileset("${local.kql_queries}/", "*.kql")
 
-  name           = split(".", each.value)[0] # each.value is the full file name including the extension (MyFile.kql). So we split it and use only the name without extension
-  display_name   = split(".", each.value)[0]
-  category       = "HealthModel"
-  query          = file("${local.kql_queries}/${each.value}")
-  function_alias = split(".", each.value)[0]
+#  name           = split(".", each.value)[0] # each.value is the full file name including the extension (MyFile.kql). So we split it and use only the name without extension
+#  display_name   = split(".", each.value)[0]
+#  category       = "HealthModel"
+#  query          = file("${local.kql_queries}/${each.value}")
+#  function_alias = split(".", each.value)[0]
 
-  log_analytics_workspace_id = azurerm_log_analytics_workspace.stamp.id
-}
+#  log_analytics_workspace_id = azurerm_log_analytics_workspace.stamp.id
+#}
 
