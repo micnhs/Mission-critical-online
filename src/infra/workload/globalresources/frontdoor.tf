@@ -297,27 +297,27 @@ data "azurerm_monitor_diagnostic_categories" "frontdoor" {
   resource_id = azurerm_cdn_frontdoor_profile.main.id
 }
 
-resource "azurerm_monitor_diagnostic_setting" "frontdoor" {
-  name                       = "afdladiagnostics"
-  target_resource_id         = azurerm_cdn_frontdoor_profile.main.id
-  log_analytics_workspace_id = azurerm_log_analytics_workspace.global.id
+#resource "azurerm_monitor_diagnostic_setting" "frontdoor" {
+#  name                       = "afdladiagnostics"
+#  target_resource_id         = azurerm_cdn_frontdoor_profile.main.id
+#  log_analytics_workspace_id = azurerm_log_analytics_workspace.global.id
 
-  dynamic "enabled_log" {
-    iterator = entry
-    for_each = data.azurerm_monitor_diagnostic_categories.frontdoor.log_category_types
+#  dynamic "enabled_log" {
+#    iterator = entry
+#    for_each = data.azurerm_monitor_diagnostic_categories.frontdoor.log_category_types
 
-    content {
-      category = entry.value
-    }
-  }
+#    content {
+#      category = entry.value
+#    }
+#  }
 
-  dynamic "metric" {
-    iterator = entry
-    for_each = data.azurerm_monitor_diagnostic_categories.frontdoor.metrics
+#  dynamic "metric" {
+#    iterator = entry
+#    for_each = data.azurerm_monitor_diagnostic_categories.frontdoor.metrics
 
-    content {
-      category = entry.value
-      enabled  = true
-    }
-  }
-}
+#    content {
+#      category = entry.value
+#      enabled  = true
+#    }
+#  }
+#}
