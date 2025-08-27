@@ -108,34 +108,34 @@ resource "azurerm_cosmosdb_sql_container" "itemRating" {
 }
 
 ####################################### DIAGNOSTIC SETTINGS #######################################
-
+#
 # Use this data source to fetch all available log and metrics categories. We then enable all of them
 data "azurerm_monitor_diagnostic_categories" "cosmosdb" {
   resource_id = azurerm_cosmosdb_account.main.id
 }
 
-resource "azurerm_monitor_diagnostic_setting" "cosmosdb" {
-  name                           = "cosmosdbladiagnostics"
-  target_resource_id             = azurerm_cosmosdb_account.main.id
-  log_analytics_workspace_id     = azurerm_log_analytics_workspace.global.id
-  log_analytics_destination_type = "AzureDiagnostics"
+#resource "azurerm_monitor_diagnostic_setting" "cosmosdb" {
+#  name                           = "cosmosdbladiagnostics"
+#  target_resource_id             = azurerm_cosmosdb_account.main.id
+#  log_analytics_workspace_id     = azurerm_log_analytics_workspace.global.id
+#  log_analytics_destination_type = "AzureDiagnostics"
 
-  dynamic "enabled_log" {
-    iterator = entry
-    for_each = data.azurerm_monitor_diagnostic_categories.cosmosdb.log_category_types
+#  dynamic "enabled_log" {
+#    iterator = entry
+#    for_each = data.azurerm_monitor_diagnostic_categories.cosmosdb.log_category_types
 
-    content {
-      category = entry.value
-    }
-  }
+#    content {
+#      category = entry.value
+#    }
+#  }
 
-  dynamic "metric" {
-    iterator = entry
-    for_each = data.azurerm_monitor_diagnostic_categories.cosmosdb.metrics
+#  dynamic "metric" {
+#    iterator = entry
+#    for_each = data.azurerm_monitor_diagnostic_categories.cosmosdb.metrics
 
-    content {
-      category = entry.value
-      enabled  = true
-    }
-  }
-}
+#    content {
+#      category = entry.value
+#      enabled  = true
+#    }
+#  }
+#}
