@@ -71,59 +71,59 @@ data "azurerm_monitor_diagnostic_categories" "storage_public" {
   resource_id = azurerm_storage_account.public.id
 }
 
-resource "azurerm_monitor_diagnostic_setting" "storage_public" {
-  name                       = "storageladiagnostics"
-  target_resource_id         = azurerm_storage_account.public.id
-  log_analytics_workspace_id = data.azurerm_log_analytics_workspace.stamp.id
+#resource "azurerm_monitor_diagnostic_setting" "storage_public" {
+#  name                       = "storageladiagnostics"
+#  target_resource_id         = azurerm_storage_account.public.id
+#  log_analytics_workspace_id = data.azurerm_log_analytics_workspace.stamp.id
 
-  dynamic "enabled_log" {
-    iterator = entry
-    for_each = data.azurerm_monitor_diagnostic_categories.storage_public.log_category_types
+ # dynamic "enabled_log" {
+ #   iterator = entry
+ #   for_each = data.azurerm_monitor_diagnostic_categories.storage_public.log_category_types
 
-    content {
-      category = entry.value
-    }
-  }
+  #  content {
+  #    category = entry.value
+  #  }
+  #}
 
-  dynamic "metric" {
-    iterator = entry
-    for_each = data.azurerm_monitor_diagnostic_categories.storage_public.metrics
+  #dynamic "metric" {
+  #  iterator = entry
+  #  for_each = data.azurerm_monitor_diagnostic_categories.storage_public.metrics
 
-    content {
-      category = entry.value
-      enabled  = true
-    }
-  }
-}
+   # content {
+   #   category = entry.value
+   #   enabled  = true
+   # }
+  #}
+#}
 
 data "azurerm_monitor_diagnostic_categories" "storage_public_blob" {
   resource_id = "${azurerm_storage_account.public.id}/blobServices/default/"
 }
 
-resource "azurerm_monitor_diagnostic_setting" "storage_public_blob" {
-  name                       = "storageblobladiagnostics"
-  target_resource_id         = "${azurerm_storage_account.public.id}/blobServices/default/"
-  log_analytics_workspace_id = data.azurerm_log_analytics_workspace.stamp.id
+#resource "azurerm_monitor_diagnostic_setting" "storage_public_blob" {
+#  name                       = "storageblobladiagnostics"
+#  target_resource_id         = "${azurerm_storage_account.public.id}/blobServices/default/"
+#  log_analytics_workspace_id = data.azurerm_log_analytics_workspace.stamp.id
 
-  dynamic "enabled_log" {
-    iterator = entry
-    for_each = data.azurerm_monitor_diagnostic_categories.storage_public_blob.log_category_types
+ # dynamic "enabled_log" {
+ #   iterator = entry
+ #   for_each = data.azurerm_monitor_diagnostic_categories.storage_public_blob.log_category_types
 
-    content {
-      category = entry.value
-    }
-  }
+  #  content {
+   #   category = entry.value
+   # }
+  #}
 
-  dynamic "metric" {
-    iterator = entry
-    for_each = data.azurerm_monitor_diagnostic_categories.storage_public_blob.metrics
+  #dynamic "metric" {
+  #  iterator = entry
+  #  for_each = data.azurerm_monitor_diagnostic_categories.storage_public_blob.metrics
 
-    content {
-      category = entry.value
-      enabled  = true
-    }
-  }
-}
+   # content {
+   #   category = entry.value
+   #   enabled  = true
+    #}
+  #}
+#}
 
 ####################################### PRIVATE STORAGE DIAGNOSTIC SETTINGS #######################################
 
@@ -132,30 +132,30 @@ data "azurerm_monitor_diagnostic_categories" "storage_private" {
   resource_id = azurerm_storage_account.private.id
 }
 
-resource "azurerm_monitor_diagnostic_setting" "storage_private" {
-  name                       = "storageladiagnostics"
-  target_resource_id         = azurerm_storage_account.private.id
-  log_analytics_workspace_id = data.azurerm_log_analytics_workspace.stamp.id
+#resource "azurerm_monitor_diagnostic_setting" "storage_private" {
+#  name                       = "storageladiagnostics"
+#  target_resource_id         = azurerm_storage_account.private.id
+#  log_analytics_workspace_id = data.azurerm_log_analytics_workspace.stamp.id
 
-  dynamic "enabled_log" {
-    iterator = entry
-    for_each = data.azurerm_monitor_diagnostic_categories.storage_private.log_category_types
+ # dynamic "enabled_log" {
+ #   iterator = entry
+ #   for_each = data.azurerm_monitor_diagnostic_categories.storage_private.log_category_types
 
-    content {
-      category = entry.value
-    }
-  }
+  #  content {
+  #    category = entry.value
+  #  }
+  #}
 
-  dynamic "metric" {
-    iterator = entry
-    for_each = data.azurerm_monitor_diagnostic_categories.storage_private.metrics
+ # dynamic "metric" {
+ #   iterator = entry
+ #   for_each = data.azurerm_monitor_diagnostic_categories.storage_private.metrics
 
-    content {
-      category = entry.value
-      enabled  = true
-    }
-  }
-}
+  #  content {
+  #    category = entry.value
+  #    enabled  = true
+  #  }
+  #}
+#}
 
 data "azurerm_monitor_diagnostic_categories" "storage_private_blob" {
   resource_id = "${azurerm_storage_account.private.id}/blobServices/default/"
