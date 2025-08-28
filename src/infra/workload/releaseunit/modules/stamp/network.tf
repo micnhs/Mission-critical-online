@@ -93,27 +93,27 @@ data "azurerm_monitor_diagnostic_categories" "vnet" {
   resource_id = azurerm_virtual_network.stamp.id
 }
 
-resource "azurerm_monitor_diagnostic_setting" "vnet" {
-  name                       = "vnetladiagnostics"
-  target_resource_id         = azurerm_virtual_network.stamp.id
-  log_analytics_workspace_id = data.azurerm_log_analytics_workspace.stamp.id
+#resource "azurerm_monitor_diagnostic_setting" "vnet" {
+#  name                       = "vnetladiagnostics"
+#  target_resource_id         = azurerm_virtual_network.stamp.id
+#  log_analytics_workspace_id = data.azurerm_log_analytics_workspace.stamp.id
 
-  dynamic "enabled_log" {
-    iterator = entry
-    for_each = data.azurerm_monitor_diagnostic_categories.vnet.log_category_types
+#  dynamic "enabled_log" {
+#    iterator = entry
+#    for_each = data.azurerm_monitor_diagnostic_categories.vnet.log_category_types
 
-    content {
-      category = entry.value
-    }
-  }
+ #   content {
+ #     category = entry.value
+ #   }
+ # }
 
-  dynamic "metric" {
-    iterator = entry
-    for_each = data.azurerm_monitor_diagnostic_categories.vnet.metrics
+ # dynamic "metric" {
+ #   iterator = entry
+ #   for_each = data.azurerm_monitor_diagnostic_categories.vnet.metrics
 
-    content {
-      category = entry.value
-      enabled  = true
-    }
-  }
-}
+  #  content {
+  #    category = entry.value
+  #    enabled  = true
+  #  }
+  #}
+#}
