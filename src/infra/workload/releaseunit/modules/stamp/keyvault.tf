@@ -10,16 +10,16 @@ resource "azurerm_key_vault" "stamp" {
 }
 
 # Give KV secret permissions to the service principal that runs the Terraform apply itself
-resource "azurerm_key_vault_access_policy" "devops_pipeline_all" {
-  key_vault_id = azurerm_key_vault.stamp.id
+#resource "azurerm_key_vault_access_policy" "devops_pipeline_all" {
+#  key_vault_id = azurerm_key_vault.stamp.id
 
-  tenant_id = data.azurerm_client_config.current.tenant_id
-  object_id = data.azurerm_client_config.current.object_id
+#  tenant_id = data.azurerm_client_config.current.tenant_id
+#  object_id = data.azurerm_client_config.current.object_id
 
-  secret_permissions = [
-    "Get", "List", "Delete", "Purge", "Set", "Backup", "Restore", "Recover"
-  ]
-}
+#  secret_permissions = [
+ #   "Get", "List", "Delete", "Purge", "Set", "Backup", "Restore", "Recover"
+ # ]
+#}
 
 # Give KV secret read permissions to the healthservice for CSI driver access
 resource "azurerm_key_vault_access_policy" "healthservice" {
