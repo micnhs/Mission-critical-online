@@ -161,27 +161,27 @@ data "azurerm_monitor_diagnostic_categories" "storage_private_blob" {
   resource_id = "${azurerm_storage_account.private.id}/blobServices/default/"
 }
 
-resource "azurerm_monitor_diagnostic_setting" "storage_private_blob" {
-  name                       = "storageblobladiagnostics"
-  target_resource_id         = "${azurerm_storage_account.private.id}/blobServices/default/"
-  log_analytics_workspace_id = data.azurerm_log_analytics_workspace.stamp.id
+#resource "azurerm_monitor_diagnostic_setting" "storage_private_blob" {
+#  name                       = "storageblobladiagnostics"
+#  target_resource_id         = "${azurerm_storage_account.private.id}/blobServices/default/"
+#  log_analytics_workspace_id = data.azurerm_log_analytics_workspace.stamp.id
 
-  dynamic "enabled_log" {
-    iterator = entry
-    for_each = data.azurerm_monitor_diagnostic_categories.storage_private_blob.log_category_types
+#  dynamic "enabled_log" {
+#    iterator = entry
+#    for_each = data.azurerm_monitor_diagnostic_categories.storage_private_blob.log_category_types
 
-    content {
-      category = entry.value
-    }
-  }
+#    content {
+#      category = entry.value
+#    }
+#  }
 
-  dynamic "metric" {
-    iterator = entry
-    for_each = data.azurerm_monitor_diagnostic_categories.storage_private_blob.metrics
+ # dynamic "metric" {
+ #   iterator = entry
+ #   for_each = data.azurerm_monitor_diagnostic_categories.storage_private_blob.metrics
 
-    content {
-      category = entry.value
-      enabled  = true
-    }
-  }
-}
+ #   content {
+ #     category = entry.value
+ #     enabled  = true
+  #  }
+ # }
+# }
