@@ -36,27 +36,3 @@ data "azurerm_monitor_diagnostic_categories" "eventhub" {
   resource_id = azurerm_eventhub_namespace.stamp.id
 }
 
-resource "azurerm_monitor_diagnostic_setting" "eventhub" {
-  name                       = "eventhubladiagnostics"
-  target_resource_id         = azurerm_eventhub_namespace.stamp.id
-  log_analytics_workspace_id = data.azurerm_log_analytics_workspace.stamp.id
-
-  dynamic "enabled_log" {
-    iterator = entry
-    for_each = data.azurerm_monitor_diagnostic_categories.eventhub.log_category_types
-
-    content {
-      category = entry.value
-    }
-  }
-
-  dynamic "metric" {
-    iterator = entry
-    for_each = data.azurerm_monitor_diagnostic_categories.eventhub.metrics
-
-    content {
-      category = entry.value
-      enabled  = true
-    }
-  }
-}
