@@ -64,27 +64,27 @@ data "azurerm_monitor_diagnostic_categories" "kv" {
   resource_id = azurerm_key_vault.stamp.id
 }
 
-resource "azurerm_monitor_diagnostic_setting" "kv" {
-  name                       = "kvladiagnostics"
-  target_resource_id         = azurerm_key_vault.stamp.id
-  log_analytics_workspace_id = data.azurerm_log_analytics_workspace.stamp.id
+#resource "azurerm_monitor_diagnostic_setting" "kv" {
+#  name                       = "kvladiagnostics"
+#  target_resource_id         = azurerm_key_vault.stamp.id
+#  log_analytics_workspace_id = data.azurerm_log_analytics_workspace.stamp.id
 
-  dynamic "enabled_log" {
-    iterator = entry
-    for_each = data.azurerm_monitor_diagnostic_categories.kv.log_category_types
+#  dynamic "enabled_log" {
+#    iterator = entry
+#    for_each = data.azurerm_monitor_diagnostic_categories.kv.log_category_types
 
-    content {
-      category = entry.value
-    }
-  }
+#    content {
+#      category = entry.value
+#    }
+#  }
 
-  dynamic "metric" {
-    iterator = entry
-    for_each = data.azurerm_monitor_diagnostic_categories.kv.metrics
+ # dynamic "metric" {
+ #   iterator = entry
+ #   for_each = data.azurerm_monitor_diagnostic_categories.kv.metrics
 
-    content {
-      category = entry.value
-      enabled  = true
-    }
-  }
-}
+ #   content {
+ #     category = entry.value
+ #     enabled  = true
+ #   }
+ # }
+#}
