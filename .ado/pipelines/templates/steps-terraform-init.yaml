@@ -6,16 +6,20 @@ parameters:
 
 steps:
 # Install Terraform tooling
-- task: Bash@3
-  displayName: 'Install Terraform CLI v$(terraformVersion)'
-  retryCountOnTaskFailure: 1
+#- task: Bash@3
+#  displayName: 'Install Terraform CLI v$(terraformVersion)'
+#  retryCountOnTaskFailure: 1
+#  inputs:
+#    targetType: 'inline'
+#    script: |
+#      curl -fsSL https://apt.releases.hashicorp.com/gpg | sudo apt-key add -
+#      sudo apt-add-repository "deb [arch=amd64] https://apt.releases.hashicorp.com $(lsb_release -cs) main"
+#      sudo apt-get update && sudo apt install terraform=$(terraformVersion)
+- task: TerraformInstaller@1
+  displayName: 'Install Terraform'
   inputs:
-    targetType: 'inline'
-    script: |
-      curl -fsSL https://apt.releases.hashicorp.com/gpg | sudo apt-key add -
-      sudo apt-add-repository "deb [arch=amd64] https://apt.releases.hashicorp.com $(lsb_release -cs) main"
-      sudo apt-get update && sudo apt install terraform=$(terraformVersion)
-
+    terraformVersion: $(terraformVersion)   # pick a version you want
+    
 # Setting env vars for Terraform Backend configuration
 # Using Terraform CLI instead of Terraform Tasks
 # https://cloudarchitected.com/2021/02/using-terraform-in-azure-pipelines-without-extensions/
