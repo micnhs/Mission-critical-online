@@ -19,12 +19,12 @@ locals {
   }
 }
 
-#resource "azurerm_key_vault_secret" "secrets" {
-#  # Every secret is depended on a) the access policy for the deploying service principal being created and b) - only when running in private mode - on the build agent private endpoint being up and running
-#  depends_on = [azurerm_key_vault_access_policy.devops_pipeline_all]
-#  # Loop through the list of secrets from above
-#  for_each     = local.secrets
-#  name         = each.key
-#  value        = each.value
-#  key_vault_id = azurerm_key_vault.stamp.id
-#}
+resource "azurerm_key_vault_secret" "secrets" {
+  # Every secret is depended on a) the access policy for the deploying service principal being created and b) - only when running in private mode - on the build agent private endpoint being up and running
+  depends_on = [azurerm_key_vault_access_policy.devops_pipeline_all]
+  # Loop through the list of secrets from above
+  for_each     = local.secrets
+  name         = each.key
+  value        = each.value
+  key_vault_id = azurerm_key_vault.stamp.id
+}
