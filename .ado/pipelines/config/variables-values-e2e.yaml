@@ -4,7 +4,7 @@ variables:
 
 # Resource prefix for this environment
 - name:  'prefix'
-  value: 'nhs2205'          # <===== CHANGE THIS! Must not be longer than 6 characters! Needs to be a unique prefix
+  value: 'nhs05'          # <===== CHANGE THIS! Must not be longer than 6 characters! Needs to be a unique prefix
 
 # Host-encryption for compute resources (needs to be enabled on subscription-level)
 # https://learn.microsoft.com/en-us/azure/virtual-machines/linux/disks-enable-host-based-encryption-cli
