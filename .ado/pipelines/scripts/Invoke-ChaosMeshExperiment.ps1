@@ -69,7 +69,7 @@ az role assignment create --role $role --assignee-object-id $experimentPrincipal
 
 echo "*** Starting experiment '$ExperimentName' ..."
 # Start the experiment
-$startResult = $(az rest --method post --url "https://management.azure.com/$experimentId/start?api-version=$($ChaosStudioApiVersion)") | ConvertFrom-Json
+$startResult = $(az rest --method post --url "https://management.azure.com/subscriptions/$subscriptionId/resourceGroups/$resourceGroupName/providers/Microsoft.Chaos/experiments/$($ExperimentName)/start?api-version=$($ChaosStudioApiVersion)") | ConvertFrom-Json
 $startResult
 
 $statusUrl = $startResult.statusUrl
