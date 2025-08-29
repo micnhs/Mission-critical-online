@@ -5,7 +5,7 @@ param(
     $ExperimentDurationSeconds # Duration of the experiments in seconds
 )
 
-$ChaosStudioApiVersion = "2021-09-15-preview" # REST API version for Chaos Studio
+$ChaosStudioApiVersion = "2025-01-01" #2021-09-15-preview" # REST API version for Chaos Studio
 
 $releaseUnitInfraDeployOutput = Get-ChildItem $env:PIPELINE_WORKSPACE/terraformOutputReleaseUnitInfra/*.json | Get-Content | ConvertFrom-JSON
 
